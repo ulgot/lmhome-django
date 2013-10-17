@@ -1,0 +1,29 @@
+{% include "publications/header.html" %}
+
+<div class="breadcrumb"><a href="../">to the list of publications</a></div>
+<p class="pub_title">{{ publication.title }}</p>
+<p class="citation">{{ publication.authors }}, 
+<i>{{ publication.publisher }}</i> <strong>{{ publication.volume }}</strong>, 
+{{ publication.page }} ({{ publication.pub_date.year }})</p>
+
+<div class="get_article">
+  {% if publication.doi %}
+  doi:<a href="http://dx.doi.org/{{ publication.doi }}" target=_blank>{{ publication.doi }}</a> 
+  {% else %}
+  www:<a href="{{ publication.www }}" target=_blank>{{ publication.www }}</a> 
+  {% endif %}
+  | 
+  arxiv:<a href="http://arxiv.org/abs/{{ publication.arxiv }}" target=_blank>{{ publication.arxiv }}</a>
+  |
+  <span class="pdf"><a href="{{ publication.pdf.url }}">PDF</a></span> 
+</div>
+<div class="abstract">
+  <p class="abstract-title">Abstract</p>
+  <p class="abstract-body">{{ publication.abstract }}</p>
+</div>
+
+<div class="journal_info">
+  impact factor {{ publication.publisher.impact_factor }} | MNiSW points {{ publication.publisher.punkty_mnsw }}
+</div> 
+
+{% include "publications/footer.html" %}

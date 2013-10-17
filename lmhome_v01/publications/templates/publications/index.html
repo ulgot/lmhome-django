@@ -1,0 +1,24 @@
+{% include "publications/header.html" %}
+
+<p class="pub_title">List of publications</p>
+<ol>
+  {% for key, pub in all_publications_dict.items %}
+  <li value="{{ key }}"><a href="{% url 'publications:detail' pub.id %}">{{ pub.title }}</a>
+  <br />
+  {% for author in pub.authors.all %}
+  {% if author.last_name == "Machura" %}
+  <strong>
+    {{ author.first_name }} {{ author.last_name }},
+  </strong>
+  {% else %}
+    {{ author.first_name }} {{ author.last_name }},
+  {% endif %}
+  {% endfor %}
+  <br />{{ pub.publisher.abbrev }} <strong>{{ pub.volume }}</strong>, {{ pub.page }} ({{ pub.pub_date.year }}).
+  </li>
+  {% empty %}
+  <p>Nie ma zadnych publikacji</p>
+  {% endfor %}
+</ol>
+
+{% include "publications/footer.html" %}

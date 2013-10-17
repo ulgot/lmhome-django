@@ -1,0 +1,16 @@
+{% include "publications/header.html" %}
+
+<p class="pub_title">List of publications</p>
+<ol>
+  {% for key, pub in all_publications_dict.items %}
+  <li value="{{ key }}"><a href="{% url 'publications:detail' pub.id %}">{{ pub.title }}</a>
+  <br />
+  {{ pub.authors }}
+  <br />{{ pub.publisher.abbrev }} <strong>{{ pub.volume }}</strong>, {{ pub.page }} ({{ pub.pub_date.year }}).
+  </li>
+  {% empty %}
+  <p>Nie ma zadnych publikacji</p>
+  {% endfor %}
+</ol>
+
+{% include "publications/footer.html" %}
